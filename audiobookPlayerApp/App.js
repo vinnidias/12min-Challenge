@@ -1,19 +1,19 @@
+import 'react-native-gesture-handler'
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import { NavigationContainer } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
+import AudiobookList from './src/screens/AudiobookList'
+import AudioPlayer from './src/screens/AudioPlayer'
 
-const App = () => {
-  return(
-    <View>
-      <Text>
-        Helo World!
-      </Text>
-    </View>
-  )
-}
+const Stack = createStackNavigator()
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName={"AudiobookList"} screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="AudiobookList" component={AudiobookList} />
+        <Stack.Screen name="AudioPlayer" component={AudioPlayer} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
