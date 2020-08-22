@@ -6,7 +6,7 @@ The application consists of an audiobook listing screen and a screen with the pl
 On the list screen, each track corresponds to a specific audiobook that, when clicked, the user is taken to the player screen.
 In the player, the title of the book and author is rendered, their cover is on the background.
 It is necessary to press the play button to start the audio track.
-Some functions are available at the bottom of the screen: "play", "pause", "advance" and "return of ten seconds in time"
+Some functions are available at the bottom of the screen: "play", "pause", "advance" and "return of ten seconds in time".
 When you press the device's return button on the player screen, the audio is interrupted and the app navigates to the list screen.
 
 
