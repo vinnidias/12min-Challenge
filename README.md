@@ -7,6 +7,7 @@ On the list screen, each track corresponds to a specific audiobook that, when cl
 In the player the title of the book the author is rendered and its cover in the background.
 It is necessary to press the play button to start the audio track.
 Its functions are available at the bottom of the screen with options of play and pause and advance and return of ten seconds in time.
+When you press the device's return button on the player screen, the audio is interrupted and the app navigates to the list screen.
 
 
 ## Installation
