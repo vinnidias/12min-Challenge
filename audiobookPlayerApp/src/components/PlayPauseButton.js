@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, Image } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 
 const PlayPauseButton = ({ onPlayPress, onPausePress }) => {
 	return (
@@ -35,7 +34,6 @@ const styles = {
 
 	playButtonContainer: {
 		margin: 20,
-		marginTop: 50,
 		alignSelf: 'center',
 		flexDirection: 'row'
 	},
