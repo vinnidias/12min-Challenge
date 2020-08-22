@@ -3,12 +3,11 @@ import { View, Text } from 'react-native'
 import TrackList from '../components/TrackList'
 import axios from 'axios';
 
-const AudiobookList = () => {
-	const booksList = []
+const AudiobookList = ({navigation}) => {
 	const [list, setList] = useState({data: []})
 	useEffect(()=>{
 		axios.get('https://run.mocky.io/v3/96f0177a-118f-43b8-9c99-e84e3dc3fa81')
-			.then(result => {setList(result.data); console.log(list.data[0].author)})
+			.then(result => {setList(result.data)})
 			.catch()
 	},[])
 
@@ -20,8 +19,10 @@ const AudiobookList = () => {
 				</Text>
 			</View>
 			<View style={{flex: 4}}>
-				<TrackList array={list.data}/>
-			</View>
+				<TrackList array={list.data} onPress={(audio, coverImg,description, title, author)=>{
+					navigation.navigate('AudioPlayer', {audio, coverImg, description, title, author})
+				}}/>
+			</View>	
 		</View>
 	)
 };
