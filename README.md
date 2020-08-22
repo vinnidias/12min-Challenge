@@ -23,7 +23,7 @@ npm install
 With Android Studio open, run the command npm start on the terminal for the application to run on the emulator.
 
 ```bash
-npm install
+npm start
 ```
 
 The application will be ready to be used in the emulator.
