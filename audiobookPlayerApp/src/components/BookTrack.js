@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, Image } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-const BookTrack = ({ imgUrl, title, author }) => {
+
+const BookTrack = ({ imgUrl, title, author, onPress, songUrl, coverImgUrl, description }) => {
+	const [audioUrl, setSongUrl] = useState(songUrl)
+	const [coverImg, setCoverImg] = useState(coverImgUrl)
+	const [bookDescription, setMediumImg] = useState(description)
+
 	return (
-		<TouchableOpacity>
+		<TouchableOpacity onPress={()=> onPress(audioUrl, coverImg, description, title,author)}>
 			<View style={styles.trackContainer}>
 				<Image
 					source={{ uri: imgUrl }}
@@ -29,16 +34,16 @@ export default BookTrack
 const styles = {
 	trackContainer: {
 		flexDirection: 'row',
-		margin: 10
+		marginVertical: 5
 	},
 
 	textContainer: {
-		marginVertical: 20
+		marginVertical: 20,
 	},
 
 	titleText: {
 		fontWeight: 'bold',
-		fontSize: 14,
+		fontSize: 12,
 		marginBottom: 10,
 		color: '#9338EF'
 	},
