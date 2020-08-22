@@ -9,7 +9,7 @@ const BookTrack = ({ imgUrl, title, author, onPress, songUrl, coverImgUrl, descr
 	const [bookDescription, setMediumImg] = useState(description)
 
 	return (
-		<TouchableOpacity onPress={()=> onPress(audioUrl, coverImg, description, title,author)}>
+		<TouchableOpacity onPress={() => onPress(audioUrl, coverImg, description, title, author)}>
 			<View style={styles.trackContainer}>
 				<Image
 					source={{ uri: imgUrl }}
@@ -45,11 +45,11 @@ const styles = {
 		fontWeight: 'bold',
 		fontSize: 12,
 		marginBottom: 10,
-		color: '#9338EF'
+		color: '#1e2cc7'
 	},
 
 	authorText: {
 		fontSize: 12,
-		color: '#9338EF'
+		color: '#1e2cc7'
 	}
 }
