@@ -10,9 +10,7 @@ const AudioPalyer = ({ route, navigation }) => {
 	const { title } = route.params
 	const { author } = route.params
 	const [duration, setDuration] = useState(0)
-	const [textTimer, setTextTimer] = useState('')
-	const advancedTime = textTimer + 10
-	const songTime = duration / 60
+
 	const backHandler = BackHandler.addEventListener('hardwareBackPress', () => { song.stop() })
 
 	const song = new SoundPlayer(audio, null,
