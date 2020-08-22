@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Alert, Image, ImageBackground, Button } from 'react-native'
+import { View, Text, Alert, ImageBackground, BackHandler } from 'react-native'
 import SoundPlayer from 'react-native-sound'
 import PlayPauseButton from '../components/PlayPauseButton'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import IconButton from '../components/IconButton'
 
 const AudioPalyer = ({ route, navigation }) => {
 	const { audio } = route.params
 	const { coverImg } = route.params
-	const { description } = route.params
 	const { title } = route.params
 	const { author } = route.params
-	const [playing, setPlaying] = useState(true)
 	const [duration, setDuration] = useState(0)
-	const [textTimer, setTextTimer] = useState(0)
+	const [textTimer, setTextTimer] = useState('')
+	const advancedTime = textTimer + 10
 	const songTime = duration / 60
+	const backHandler = BackHandler.addEventListener('hardwareBackPress', () => { song.stop() })
 
 	const song = new SoundPlayer(audio, null,
 		(error) => {
@@ -35,7 +35,34 @@ const AudioPalyer = ({ route, navigation }) => {
 						{author}
 					</Text>
 				</View>
-				<PlayPauseButton onPlayPress={() => song.play()} onPausePress={() => song.pause()} />
+				<View style={styles.buttonsContainer}>
+					<IconButton
+						textLeft={'- 10 '}
+						icon={'⏪'}
+						onPress={() => {
+							song.getCurrentTime((sec) => {
+								let minusTen = sec - 10
+								if (minusTen < 0) minusTen = 0
+								song.setCurrentTime(minusTen)
+							})
+						}}
+					/>
+					<PlayPauseButton
+						onPlayPress={() => song.play()}
+						onPausePress={() => song.pause()}
+					/>
+					<IconButton
+						textRight={' 10 +'}
+						icon={'⏩'}
+						onPress={() => {
+							song.getCurrentTime((sec) => {
+								let plusTen = sec + 10
+								if (plusTen > duration) plusTen = duration
+								song.setCurrentTime(plusTen)
+							})
+						}}
+					/>
+				</View>
 			</ImageBackground>
 		</View>
 	)
@@ -48,8 +75,14 @@ const styles = {
 		flex: 1,
 		justifyContent: 'center',
 		resizeMode: 'cover',
-		opacity: 0.6,
-		backgroundColor: '#9338EF'
+		opacity: 0.7,
+		backgroundColor: '#1e2cc7'
+	},
+
+	infoContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
+
 	},
 
 	title: {
@@ -57,8 +90,7 @@ const styles = {
 		fontSize: 22,
 		color: 'white',
 		margin: 10,
-		justifyContent: 'center',
-		alignItems: 'center'
+		alignSelf: 'center'
 	},
 
 	author: {
@@ -67,4 +99,9 @@ const styles = {
 		alignSelf: 'center'
 	},
 
+	buttonsContainer: {
+		flexDirection: 'row',
+		alignSelf: 'center',
+		marginTop: 200
+	}
 }
